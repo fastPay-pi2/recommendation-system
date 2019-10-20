@@ -1,0 +1,8 @@
+sqlalchemy
+requests
+chatterbot
+sklearn
+pandas
+scipy
+matplotlib
+jupyter
