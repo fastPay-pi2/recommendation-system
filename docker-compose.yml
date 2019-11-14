@@ -1,0 +1,26 @@
+version: '3.7'
+
+services:
+  recommendation_api:
+    container_name: recommendation_api
+    build:
+      context: .
+      dockerfile: ./docker/Dockerfile
+    volumes:
+      - './recommendation_api:/usr/src/app'
+    networks:
+      - fastpay-network
+    ports:
+      - 5001:5000
+    environment:
+      - DB_NAME=recommendation
+      - DB_URL=mongodb://recommendation_db:27018/recommendation
+      - DB_TEST_NAME=recommendation_test
+      - DB_TEST_URL=mongodb://recommendation_db:27018/recommendation_test
+      - FLASK_APP=application/__init__.py
+      - FLASK_ENV=development
+      - APP_SETTINGS=application.config.DevelopmentConfig
+
+networks:
+  fastpay-network:
+    external: true
